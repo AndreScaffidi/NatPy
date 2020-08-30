@@ -68,6 +68,8 @@ naturalpy.convert(u.kg, u.keV)
 fm = 1*u.fm **(-1)
 print(naturalpy.convert(fm, u.GeV).to_string())
 
+print(naturalpy.convert(u.cm**(-1), u.yr**(-1)))
+
 #%%
 
 test=u.kg * u.m * u.m / (u.keV * u.s * u.s)

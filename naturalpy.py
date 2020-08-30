@@ -22,7 +22,7 @@ def ConversionDimensionality(initial_unit, target_unit, natural_bases):
 def CoUNaturalDimensionality(cou_dimvec, natural_matrix):
     if natural_matrix.ndim < 2:
         if numpy.linalg.matrix_rank([natural_matrix, cou_dimvec])<=1:
-            result = np.array([cou_dimvec[0]/natural_matrix[0]])
+            result = numpy.array([cou_dimvec[0]/natural_matrix[0]])
         else:
             raise UnitConversionError("Units not compatible after considering natural dimensionality.")
     else:

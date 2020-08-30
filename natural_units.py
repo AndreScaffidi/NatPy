@@ -1,9 +1,7 @@
-#%%
 import numpy
 import astropy.units
 from astropy import units as u
 from functools import reduce
-#%%
 
 class NaturalUnit(astropy.units.quantity.Quantity):
     _registry = []
