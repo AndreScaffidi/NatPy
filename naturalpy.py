@@ -20,10 +20,16 @@ def ConversionDimensionality(initial_unit, target_unit, natural_bases):
     return cou_dimvec
 
 def CoUNaturalDimensionality(cou_dimvec, natural_matrix):
-    pseudoinv = numpy.linalg.pinv(natural_matrix)
-    result = pseudoinv@cou_dimvec
-    #Check above gives integer soln, pseudoinv results in machine prec error
-    result = numpy.round(result, tol)
+    if natural_matrix.ndim < 2:
+        if numpy.linalg.matrix_rank([natural_matrix, cou_dimvec])<=1:
+            result = np.array([cou_dimvec[0]/natural_matrix[0]])
+        else:
+            raise UnitConversionError("Units not compatible after considering natural dimensionality.")
+    else:
+        pseudoinv = numpy.linalg.pinv(natural_matrix)
+        result = pseudoinv@cou_dimvec
+        #Check above gives integer soln, pseudoinv results in machine prec error
+        result = numpy.round(result, tol)
     for x in result: 
         if not x.is_integer: 
             raise UnitConversionError("Units not compatible after considering natural dimensionality.")
