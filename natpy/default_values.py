@@ -17,7 +17,7 @@ default_conventions = {
     "geometrised": [G, c] 
 }
 
-def set_active_unit(unit_in):
+def set_active_units(unit_in):
     if isinstance(unit_in, str):
         if not unit_in in default_conventions:
             raise ValueError("Default natural units not implemented.")
