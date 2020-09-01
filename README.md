@@ -4,8 +4,6 @@
 ### Packages needed:
 - astropy
 - numpy
-<<<<<<< HEAD
-=======
 ---
 ### Basic Usage
 
@@ -24,4 +22,3 @@
 >>> naturalpy.convert(9.11e-31 * u.kg, u.keV)
 <Quantity 511.74132902 keV>
 ```
->>>>>>> Tom-Dev-Branch
