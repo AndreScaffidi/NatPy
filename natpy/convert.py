@@ -49,7 +49,7 @@ def QuantityConvert(initial_quantity, target_unit, natural_matrix, natural_bases
     natural_conv_factor = numpy.prod(
         numpy.array(NaturalUnit._registry, dtype=object)**cou_naturaldim
     )
-    print((natural_conv_factor * initial_quantity).unit)
+    
     try:
         result = (natural_conv_factor * initial_quantity).to(target_unit)
     except UnitConversionError:
