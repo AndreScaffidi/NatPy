@@ -2,6 +2,7 @@ from .natural_unit_class import NaturalUnit
 from astropy.units.core import UnitConversionError
 import numpy 
 import astropy.units
+import sympy
 tol = 8 #tolerance for solving pseudoinv eqn to integer soln
 
 
@@ -26,14 +27,14 @@ def CoUNaturalDimensionality(cou_dimvec, natural_matrix):
         else:
             raise UnitConversionError("Units not compatible after considering natural dimensionality.")
     else:
-        pseudoinv = numpy.linalg.pinv(natural_matrix)
-        result = pseudoinv@cou_dimvec
-        #Check above gives integer soln, pseudoinv results in machine prec error
-        result = numpy.round(result, tol)
-    for x in result: 
-        if not x.is_integer: 
-            raise UnitConversionError("Units not compatible after considering natural dimensionality.")
-    return result.astype(int)
+        pseudoinv = sympy.Matrix(natural_matrix.astype(int)).pinv()
+        #pseudoinv = numpy.linalg.pinv(natural_matrix)
+        
+        pseudoinv = numpy.array(pseudoinv.tolist()).astype(numpy.float64)
+        
+        result = pseudoinv @ cou_dimvec
+        
+    return result
     
 
 def QuantityConvert(initial_quantity, target_unit, natural_matrix, natural_bases):
@@ -48,8 +49,11 @@ def QuantityConvert(initial_quantity, target_unit, natural_matrix, natural_bases
     natural_conv_factor = numpy.prod(
         numpy.array(NaturalUnit._registry, dtype=object)**cou_naturaldim
     )
-    result = (natural_conv_factor * initial_quantity).to(target_unit)
     
+    try:
+        result = (natural_conv_factor * initial_quantity).to(target_unit)
+    except UnitConversionError:
+        raise UnitConversionError("Units not compatible after considering natural dimensionality.")
     return result
 
 def UnitConvert(initial_unit, target_unit, natural_matrix, natural_bases):
