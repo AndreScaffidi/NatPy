@@ -1,4 +1,4 @@
-# Natural-Unit-Conversion-
+# NatPy
 ## Convert the units of particle physics quantities
 ---
 ### Packages needed:
