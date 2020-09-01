@@ -1,4 +1,4 @@
-from natural_units import NaturalUnit
+from .natural_unit_class import NaturalUnit
 from astropy.units.core import UnitConversionError
 import numpy 
 import astropy.units
