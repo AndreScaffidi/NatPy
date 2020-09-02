@@ -25,7 +25,7 @@ def CoUNaturalDimensionality(cou_dimvec, natural_matrix):
         if numpy.linalg.matrix_rank([natural_matrix, cou_dimvec])<=1:
             result = numpy.array([cou_dimvec[0]/natural_matrix[0]])
         else:
-            raise UnitConversionError("Units not compatible after considering natural dimensionality.")
+            raise UnitConversionError
     else:
         pseudoinv = sympy.Matrix(natural_matrix.astype(int)).pinv()
         #pseudoinv = numpy.linalg.pinv(natural_matrix)
@@ -44,8 +44,11 @@ def QuantityConvert(initial_quantity, target_unit, natural_matrix, natural_bases
     
     cou_dimvec = ConversionDimensionality(initial_unit, target_unit, natural_bases)
     
-    cou_naturaldim = CoUNaturalDimensionality(cou_dimvec, natural_matrix)
-    
+    try:
+        cou_naturaldim = CoUNaturalDimensionality(cou_dimvec, natural_matrix)
+    except:
+        raise UnitConversionError(f"Units {initial_quantity.unit} and {target_unit} not compatible after considering natural dimensionality.")
+        raise 
     natural_conv_factor = numpy.prod(
         numpy.array(NaturalUnit._registry, dtype=object)**cou_naturaldim
     )
@@ -53,7 +56,7 @@ def QuantityConvert(initial_quantity, target_unit, natural_matrix, natural_bases
     try:
         result = (natural_conv_factor * initial_quantity).to(target_unit)
     except UnitConversionError:
-        raise UnitConversionError("Units not compatible after considering natural dimensionality.")
+        raise UnitConversionError(f"Units {initial_quantity.unit} and {target_unit} not compatible after considering natural dimensionality.")
     return result
 
 def UnitConvert(initial_unit, target_unit, natural_matrix, natural_bases):
@@ -65,9 +68,11 @@ def UnitConvert(initial_unit, target_unit, natural_matrix, natural_bases):
     natural_conv_factor = numpy.prod(
         numpy.array(NaturalUnit._registry, dtype=object)**cou_naturaldim
     )
-    
-    scale_conv_factor = (initial_unit * natural_conv_factor.unit / target_unit).decompose().scale
-    result = natural_conv_factor.value * scale_conv_factor
+     
+    scale_conv_factor = (initial_unit * natural_conv_factor.unit / target_unit).decompose()
+    if scale_conv_factor != astropy.units.dimensionless_unscaled:
+        raise UnitConversionError(f"Units {initial_unit} and {target_unit} not compatible after considering natural dimensionality.")
+    result = natural_conv_factor.value * scale_conv_factor.scale
     
     return result
     
@@ -91,4 +96,6 @@ def convert(initial_unit, target_unit):
     
     # except Exception as e:
     #     raise e   
+    
+    
     
