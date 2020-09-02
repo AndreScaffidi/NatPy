@@ -41,7 +41,6 @@ Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` o
 # Convert to SI units
 >>> natpy.convert(E,u.J)
 <Quantity 1.79926309e-13 J>
-
 ```
 Note: Summing quanties requires conventionally equivalent units.
 

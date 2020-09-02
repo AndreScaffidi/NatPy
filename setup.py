@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="NatPy-andre_scaffidi", # Replace with your own username
-    version="0.0.2",
+    version="0.0.3",
     author="Tomas Howson and Andre Scaffidi",
     author_email="tomas.howson@adelaide.edu.au, andre.scaffidi@adelaide.edu.au",
     description="Convert the units of particle physics quantities.",
