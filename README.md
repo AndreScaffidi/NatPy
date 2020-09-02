@@ -34,9 +34,11 @@ Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` o
 >>> me
 <Quantity 511.74132902 keV>
 
-# Energy of electron with momentum of 1 MeV
+# Energy of electron with momentum of 1 MeV 
 >>> p = 1 * u.MeV
 >>> E = np.sqrt(p**2 + me**2)
+
+# Convert to SI units
 >>> natpy.convert(E,u.J)
 <Quantity 1.79926309e-13 J>
 
