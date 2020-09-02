@@ -25,9 +25,22 @@ Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` o
 
 5. Run `natpy.convert()` to convert between units, including necessary factors of natural units. Pass just unit objects to obtain conversion factors. Pass quantity objects to perform conversions. E.g.
 ```
+# kg to keV
 >>> natpy.convert(u.kg, u.keV)
 5.6173581670146864e+32
 
->>> natpy.convert(9.11e-31 * u.kg, u.keV)
+# Electron mass
+>>> me = natpy.convert(9.11e-31 * u.kg, u.keV)
+>>> me
 <Quantity 511.74132902 keV>
+
+# Energy of electron with momentum of 1 MeV
+>>> p = 1 * u.MeV
+>>> E = np.sqrt(p**2 + me**2)
+>>> natpy.convert(E,u.J)
+<Quantity 1.79926309e-13 J>
+
 ```
+Note: Summing quanties requires conventionally equivalent units.
+
+6. See ```tests/convert_test.py ``` for more examples.
