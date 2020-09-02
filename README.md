@@ -11,13 +11,8 @@
 Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` objects.
 
 1. Run `import numpy` and `from astropy import units as u`.
-<<<<<<< HEAD
-2. Run `import natpy`
-3. Specify natural units by passing `astropy.units.quantity.Quantity` objects into `NaturalUnit`. E.g. 
-=======
 2. Run `import natpy`.
 3. Access physical constants with symbol:
->>>>>>> 9c72503b54a4b0fe051abed7aa0077b7894b86c5
 ```
 >>> natpy.c
 <Quantity 2.99792458e+08 m / s>
