@@ -1,5 +1,6 @@
 import numpy
-from .constants import *
+from . import constants as natpy_const
+import astropy.constants as const
 from astropy import units as u
 from .natural_unit_class import NaturalUnit
 """
@@ -8,13 +9,13 @@ Library of default natural bases, and the method to set base.
 
 ##Default Nautral Unit Conventions
 default_conventions = {
-    "hbar_c": [hbar, c],
-    "HEP": [c, hbar, kb],
-    "atomic": [e, me, hbar, kb],
-    "planck": [c, hbar, G, kb],
-    "stoney": [c, G, ke, e],
-    "schrodinger": [G, hbar, kb, ke, e],
-    "geometrised": [G, c] 
+    "hbar_c": [const.hbar, const.c],
+    "HEP": [const.c, const.hbar, const.k_B],
+    "atomic": [const.e, const.m_e, const.hbar, const.k_B],
+    "planck": [const.c, const.hbar, const.G, const.k_B],
+    "stoney": [const.c, const.G, natpy_const.k_e, const.e],
+    "schrodinger": [const.G, const.hbar, const.k_B, natpy_const.k_e, const.e],
+    "geometrised": [const.G, const.c] 
 }
 
 def set_active_units(unit_in):
@@ -33,5 +34,17 @@ def set_active_units(unit_in):
             NaturalUnit.ClearNaturalUnits()
             for x in unit_in:
                 NaturalUnit(x)
+    return
     
+def get_active_units():
+    return NaturalUnit._registry
 
+def list_active_units(full_name=False):
+    result = []
+    if full_name:
+        for x in NaturalUnit._registry:
+            result.append(x.name)
+    else:
+        for x in NaturalUnit._registry:
+            result.append(x.abbrev)
+    return result

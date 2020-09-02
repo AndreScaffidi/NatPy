@@ -21,7 +21,7 @@ class NaturalUnit(astropy.units.quantity.Quantity):
         """Return a MxN Matrix for M base units, N natural units, and a 1xN list of base units."""
         natural_decomposed = numpy.array([[x.unit.decompose().powers, 
                                x.unit.decompose().bases] 
-                              for x in cls._registry])
+                              for x in cls._registry], dtype=object)
         
         natural_bases = list(set.union(*[set(), *natural_decomposed[:,1]]))
         natural_matrix = numpy.zeros((len(natural_bases), len(cls._registry)))
