@@ -4,7 +4,6 @@
 ### Packages needed:
 - astropy
 - numpy
-- sympy
 ---
 ### Basic Usage
 
