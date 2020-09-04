@@ -42,6 +42,16 @@ Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` o
 >>> natpy.convert(E,u.J)
 <Quantity 1.79926309e-13 J>
 ```
+
+5. `natpy.convert` may also be accessed a method for unit or quantity objects.
+```
+>>>natpy.GeV.convert(natpy.fm**(-1))
+5.067730716156395
+
+>>>(3.0 * natpy.m).convert(natpy.s)
+<Quantity 1.00069229e-08 s>
+```
+=======
 Note: Summing quanties requires conventionally equivalent units.
 
 6. See ```tests/convert_test.py ``` for more examples.
