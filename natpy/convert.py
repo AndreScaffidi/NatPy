@@ -1,8 +1,9 @@
+from fractions import Fraction
 from .natural_unit_class import NaturalUnit
 from astropy.units.core import UnitConversionError
 import numpy 
 import astropy.units
-from sympy.matrices import Matrix
+#from sympy.matrices import Matrix
 tol = 8 #tolerance for solving pseudoinv eqn to integer soln
 
 
@@ -27,10 +28,13 @@ def CoUNaturalDimensionality(cou_dimvec, natural_matrix):
         else:
             raise UnitConversionError
     else:
-        pseudoinv = Matrix(natural_matrix.astype(int)).pinv()
-        #pseudoinv = numpy.linalg.pinv(natural_matrix)
+        pseudoinv = numpy.linalg.pinv(natural_matrix.astype(int))
+        to_frac = lambda x: Fraction(x).limit_denominator(10**8)
         
-        pseudoinv = numpy.array(pseudoinv.tolist()).astype(numpy.float64)
+        #pseudoinv = numpy.linalg.pinv(natural_matrix)
+        # pseudoinv = numpy.array(pseudoinv.tolist()).astype(numpy.float64)
+        
+        pseudoinv = numpy.vectorize(to_frac)(pseudoinv)
         
         result = pseudoinv @ cou_dimvec
         
@@ -70,7 +74,7 @@ def UnitConvert(initial_unit, target_unit, natural_matrix, natural_bases):
     )
      
     scale_conv_factor = (initial_unit * natural_conv_factor.unit / target_unit).decompose()
-    if scale_conv_factor != astropy.units.dimensionless_unscaled:
+    if scale_conv_factor.bases != []:
         raise UnitConversionError(f"Units {initial_unit} and {target_unit} not compatible after considering natural dimensionality.")
     result = natural_conv_factor.value * scale_conv_factor.scale
     
