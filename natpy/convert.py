@@ -2,7 +2,7 @@ from .natural_unit_class import NaturalUnit
 from astropy.units.core import UnitConversionError
 import numpy 
 import astropy.units
-import sympy
+from sympy.matrices import Matrix
 tol = 8 #tolerance for solving pseudoinv eqn to integer soln
 
 
@@ -27,7 +27,7 @@ def CoUNaturalDimensionality(cou_dimvec, natural_matrix):
         else:
             raise UnitConversionError
     else:
-        pseudoinv = sympy.Matrix(natural_matrix.astype(int)).pinv()
+        pseudoinv = Matrix(natural_matrix.astype(int)).pinv()
         #pseudoinv = numpy.linalg.pinv(natural_matrix)
         
         pseudoinv = numpy.array(pseudoinv.tolist()).astype(numpy.float64)
