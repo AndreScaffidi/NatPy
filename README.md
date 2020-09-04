@@ -32,3 +32,12 @@ Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` o
 >>> natpy.convert(9.11e-31 * u.kg, u.keV)
 <Quantity 511.74132902 keV>
 ```
+
+5. `natpy.convert` may also be accessed a method for unit or quantity objects.
+```
+>>>natpy.GeV.convert(natpy.fm**(-1))
+5.067730716156395
+
+>>>(3.0 * natpy.m).convert(natpy.s)
+<Quantity 1.00069229e-08 s>
+```
