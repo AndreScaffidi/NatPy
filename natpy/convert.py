@@ -74,7 +74,7 @@ def UnitConvert(initial_unit, target_unit, natural_matrix, natural_bases):
     )
      
     scale_conv_factor = (initial_unit * natural_conv_factor.unit / target_unit).decompose()
-    if scale_conv_factor != astropy.units.dimensionless_unscaled:
+    if scale_conv_factor.bases != []:
         raise UnitConversionError(f"Units {initial_unit} and {target_unit} not compatible after considering natural dimensionality.")
     result = natural_conv_factor.value * scale_conv_factor.scale
     

@@ -1,6 +1,6 @@
 import numpy
 from astropy import units as u
-from astropy import constants as const
+from astropy.constants import *
 
 """
 Library of Physical Constants. May be updated/added to as necessary
@@ -8,7 +8,7 @@ Library of Physical Constants. May be updated/added to as necessary
 
 ##Constants
 
-k_e = const.Constant("k_e", "Coulomb constant", 1/(4*numpy.pi * const.eps0.value), "m / F", 0.0, system="si", reference=const.eps0.reference)
+k_e = Constant("k_e", "Coulomb constant", 1/(4*numpy.pi * eps0.value), "m / F", 0.0, system="si", reference=eps0.reference)
 
 ### Exact
 # c     = 299792458 * u.m / u.s
