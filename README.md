@@ -73,4 +73,4 @@ Note: Summing quanties requires conventionally equivalent units.
     <Quantity 5.06773072 1 / fm>
     ```
 
-7. See `tests/convert_test.py` for more examples.
+7. See `examples/conversion.py` for more examples.
