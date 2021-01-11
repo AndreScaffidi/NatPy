@@ -82,4 +82,4 @@ Note: Summing quantities of compatible units results in a quantity with the firs
    <Quantity 5.06773072 1 / fm>
    ```
 
-7. See `tests/convert_test.py` for more examples.
+7. See `examples/conversion.py` for more examples.
