@@ -1,7 +1,7 @@
-import numpy 
+import natpy
+import numpy
 import sys
 sys.path.append("../")
-import natpy
 
 print("---------- print c in full -----------------")
 print(natpy.const.c)

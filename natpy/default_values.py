@@ -7,7 +7,7 @@ from .natural_unit_class import NaturalUnit
 Library of default natural bases, and the method to set base.
 """
 
-##Default Nautral Unit Conventions
+# Default Nautral Unit Conventions
 default_conventions = {
     "hbar_c": [const.hbar, const.c],
     "HEP": [const.c, const.hbar, const.k_B],
@@ -15,29 +15,37 @@ default_conventions = {
     "planck": [const.c, const.hbar, const.G, const.k_B],
     "stoney": [const.c, const.G, natpy_const.k_e, const.e],
     "schrodinger": [const.G, const.hbar, const.k_B, natpy_const.k_e, const.e],
-    "geometrised": [const.G, const.c] 
+    "geometrised": [const.G, const.c]
 }
+
 
 def set_active_units(unit_in):
     if isinstance(unit_in, str):
         if not unit_in in default_conventions:
-            raise ValueError("Default natural units not implemented.")
+            raise ValueError("Passed string is not implemented as \
+                name of natural basis.")
         else:
             NaturalUnit.ClearNaturalUnits()
             for x in default_conventions[unit_in]:
                 NaturalUnit(x)
+                NaturalUnit.NaturalConversionMatrix()
     else:
         unit_in = list(unit_in)
         if not all(isinstance(x, u.quantity.Quantity) for x in unit_in):
-            raise ValueError("Input must be a list of quantities, or a string corresponding to a default set of natural units.")
+            raise ValueError(
+                "Input must be a list of quantities, or a string corresponding \
+                     to the name of an implemented set of natural units.")
         else:
             NaturalUnit.ClearNaturalUnits()
             for x in unit_in:
                 NaturalUnit(x)
+                NaturalUnit.NaturalConversionMatrix()
     return
-    
+
+
 def get_active_units():
     return NaturalUnit._registry
+
 
 def list_active_units(full_name=False):
     result = []

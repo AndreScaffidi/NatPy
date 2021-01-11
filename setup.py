@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="NatPy", # Replace with your own username
-    version="0.0.2",
+    name="NatPy",  # Replace with your own username
+    version="0.0.6",
     author="Tomas Howson and Andre Scaffidi",
     author_email="tomas.howson@adelaide.edu.au, andre.scaffidi@adelaide.edu.au",
     description="Convert the units of particle physics quantities.",
@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/AndreScaffidi/NatPy",
     packages=setuptools.find_packages(),
-    install_requires=['numpy','astropy','sympy'],
+    install_requires=['numpy', 'astropy', 'sympy'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
