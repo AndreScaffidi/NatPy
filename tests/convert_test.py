@@ -1,9 +1,9 @@
-import pytest
-import natpy
 from astropy.units.core import dimensionless_unscaled
+import pytest
 import numpy
 import sys
 sys.path.append("../")
+import natpy  # noqa
 
 
 def test_conversions():
@@ -58,6 +58,7 @@ def test_access():
     assert(natpy.const.k_e.uncertainty == 0.0)
     assert(natpy.const.k_e.reference == 'CODATA 2018')
 
-# if __name__ == '__main__':
-#    test_conversions()
-#    test_access()
+
+if __name__ == '__main__':
+    test_conversions()
+    test_access()
