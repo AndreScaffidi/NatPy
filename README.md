@@ -1,7 +1,3 @@
-Note: Summing quanties requires conventionally equivalent units.
-
-6. # See `tests/convert_test.py ` for more examples.
-
 # NatPy
 
 ## Convert the units of particle physics quantities
