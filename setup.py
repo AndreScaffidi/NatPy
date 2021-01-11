@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="NatPy",  # Replace with your own username
+    name="NatPy",
     version="0.0.6",
     author="Tomas Howson and Andre Scaffidi",
     author_email="tomas.howson@adelaide.edu.au, andre.scaffidi@adelaide.edu.au",
@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/AndreScaffidi/NatPy",
     packages=setuptools.find_packages(),
-    install_requires=['numpy', 'astropy', 'sympy'],
+    install_requires=['numpy', 'astropy'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
