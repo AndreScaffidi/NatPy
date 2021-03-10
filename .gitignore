@@ -1,3 +1,5 @@
+.vscode/
+
 #test repl
 test.py
 create_test_pkg.sh
