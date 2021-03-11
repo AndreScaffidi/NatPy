@@ -16,7 +16,7 @@
 Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` objects.
 
 1. Run `import natpy`.
-2. Access physical constants with symbol within `const`:
+1. Access physical constants with symbol within `const`:
 
    ```
    >>> import natpy as nat
@@ -30,7 +30,7 @@ Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` o
 
    ```
 
-3. Access units with symbol. Combine with values or `numpy` objects to form quantities:
+1. Access units with symbol. Combine with values or `numpy` objects to form quantities:
 
    ```
    >>> nat.m
@@ -43,9 +43,9 @@ Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` o
    <Quantity 500. MeV>
    ```
 
-4. Specify base of natural units with `natpy.set_active_units()`. Pass a string corresponding to a list of default natural units, or a list of physical constants to set your own. The list of default bases may be found in `natpy/default_values.py`.
+1. Specify base of natural units with `natpy.set_active_units()`. Pass a string corresponding to a list of default natural units, or a list of physical constants to set your own. The list of default bases may be found in `natpy/default_values.py`. The default sets c = ℏ = ε₀ = 1.
 
-5. Run `natpy.convert()` to convert between units, including necessary factors of natural units. Pass just unit objects to obtain conversion factors. Pass quantity objects to perform conversions. E.g.
+1. Run `natpy.convert()` to convert between units, including necessary factors of natural units. Pass just unit objects to obtain conversion factors. Pass quantity objects to perform conversions. E.g.
 
    ```
    >>> import natpy as nat
@@ -68,9 +68,9 @@ Code levarages `astropy.units.core.Unit` and `astropy.units.quantity.Quantity` o
    <Quantity 1.79926309e-13 J>
    ```
 
-Note: Summing quantities of compatible units results in a quantity with the first terms units.
+   Note: Summing quantities of compatible units results in a quantity with the first terms units.
 
-6. `natpy.convert()` may also be accessed as a method for unit or quantity objects.
+1. `natpy.convert()` may also be accessed as a method for unit or quantity objects.
 
    ```
    >>> import natpy as nat
@@ -82,4 +82,28 @@ Note: Summing quantities of compatible units results in a quantity with the firs
    <Quantity 5.06773072 1 / fm>
    ```
 
-7. See `examples/conversion.py` for more examples.
+1. Electromagnetic constants are defined in the SI system by default:
+
+   ```
+   >>> nat.const.e
+   <<class 'astropy.constants.codata2018.EMCODATA2018'> name='Electron charge' value=1.602176634e-19 uncertainty=0.0 unit='C' reference='CODATA 2018'>
+   ```
+
+   Values may be accessed in other systems as attributes of the `nat.const.cgs` submodule:
+
+   ```
+   >>> nat.const.cgs.e.gauss
+   <<class 'astropy.constants.codata2018.EMCODATA2018'> name='Electron charge' value=4.803204712570263e-10 uncertainty=0.0 unit='Fr' reference='CODATA 2018'>
+   ```
+
+   The default system may be changed using `natpy.set_active_em_system()`, with arguments `si`, `gauss`, `esu` or `emu`:
+
+   ```
+   >>> nat.set_active_em_system('gauss')
+   >>> nat.const.e
+   <<class 'astropy.constants.codata2018.EMCODATA2018'> name='Electron charge' value=4.803204712570263e-10 uncertainty=0.0 unit='Fr' reference='CODATA 2018'>
+   ```
+
+1. Dimensionless unscales quantities may be constructed using `natpy.dimensionless_unscaled`, which is also bound to `natpy.dimensionless`, `natpy.unitless` and `natpy.one`, for added usability.
+
+1. See `examples/conversion.py` for more examples.
