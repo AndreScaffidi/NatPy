@@ -9,7 +9,7 @@ Library of default natural bases, and the method to set base.
 
 # Default Nautral Unit Conventions
 default_conventions = {
-    "hbar_c": [const.hbar, const.c],
+    "hbar_c_eps0": [const.hbar, const.c, const.eps0],
     "HEP": [const.c, const.hbar, const.k_B],
     "atomic": [const.e, const.m_e, const.hbar, const.k_B],
     "planck": [const.c, const.hbar, const.G, const.k_B],

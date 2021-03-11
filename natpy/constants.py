@@ -1,7 +1,6 @@
 import numpy
 from astropy import units as u
 from astropy import constants as const
-
 """
 Library of Physical Constants. May be updated/added to as necessary
 """
