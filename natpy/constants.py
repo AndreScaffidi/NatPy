@@ -1,7 +1,7 @@
 import numpy
 from astropy import units as u
 from astropy import constants as const
-
+from .em_system import set_active_em_system
 """
 Library of Physical Constants. May be updated/added to as necessary
 """

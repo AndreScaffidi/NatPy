@@ -1,3 +1,4 @@
+import sys
 from .convert import convert
 
 from .default_values import default_conventions
@@ -8,9 +9,12 @@ from astropy.units.quantity import Quantity
 from astropy.units import *
 from .auto_convert_add import convert_ufunc
 
+
 UnitBase.convert = convert
 Quantity.convert = convert
-set_active_units("hbar_c")
+set_active_units("hbar_c_eps0")
 
 # Add functionality for auto converting compatible sums
 Quantity.__array_ufunc__ = auto_convert_add.convert_ufunc
+
+const.set_active_em_system("si")

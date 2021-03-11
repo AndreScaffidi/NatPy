@@ -107,6 +107,5 @@ def convert(initial_unit, target_unit):
             return QuantityConvert(initial_unit, target_unit)
         else:  # is astropy.units.core.Unit from prev check
             return UnitConvert(initial_unit, target_unit)
-
     except Exception as e:
         raise e
