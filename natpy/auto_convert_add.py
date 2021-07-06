@@ -5,7 +5,7 @@ astropy_ufunc = Quantity.__array_ufunc__
 
 
 def convert_ufunc(self, function, method, *args, **kwargs):
-    if function.__name__ != "add":
+    if (function.__name__ != "add") and (function.__name__ != "subtract"):
         return astropy_ufunc(self, function, method, *args, **kwargs)
     else:
         if not all(isinstance(x, Quantity) for x in args):
