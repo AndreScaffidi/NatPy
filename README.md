@@ -10,6 +10,8 @@
 - numpy
 
 ---
+### Guided Tutorial
+https://github.com/AndreScaffidi/Natpy_pyhep_2021
 
 ### Basic Usage
 
