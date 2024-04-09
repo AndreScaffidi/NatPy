@@ -1,11 +1,11 @@
 import setuptools
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding="utf8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="NatPy",
-    version="0.1.1",
+    version="0.1.2",
     author="Tomas Howson and Andre Scaffidi",
     author_email="tomas.howson@adelaide.edu.au, andre.scaffidi@adelaide.edu.au",
     description="Convert the units of particle physics quantities.",
@@ -13,11 +13,11 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/AndreScaffidi/NatPy",
     packages=setuptools.find_packages(),
-    install_requires=['numpy', 'astropy'],
+    install_requires=["numpy", "astropy"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.7',
+    python_requires=">=3.7",
 )
